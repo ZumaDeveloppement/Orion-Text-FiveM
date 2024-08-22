@@ -1,0 +1,25 @@
+window.addEventListener("message", (event) => {
+    const drawTextElement = document.getElementById("drawText");
+
+    if (event.data.action === "show") {
+		$("body").fadeIn(1);
+        document.getElementById("key").innerText = event.data.key;
+        document.getElementById("text").innerText = event.data.message;
+        drawTextElement.style.display = "flex";
+    } else if (event.data.action === "hide") {
+        const keyBoxElement = document.getElementById("keyBox");
+        const textElement = document.getElementById("text");
+
+        keyBoxElement.style.animation = "zoomOut 0.5s forwards";
+        textElement.style.animation = "fadeOutLeft 0.5s forwards";
+
+        setTimeout(() => {
+            drawTextElement.style.display = "none";
+            keyBoxElement.style.animation = "";
+            textElement.style.animation = "";
+        }, 500);
+    }
+});
+
+
+
